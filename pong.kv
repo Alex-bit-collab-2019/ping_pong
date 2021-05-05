@@ -7,7 +7,22 @@
             pos: self.pos
             size: self.size
 
+# Тут нарисуем панельку игрока, называем этот объект точно также как и класс в коде
+<PongPaddle>:
+    size: 25, 200
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+# А это игровое поле =)
 <PongGame>:
+    ## тут привязываем шарик к свойству ball
+     ## тут привязываем шарик к свойству ball
+    ball: pong_ball
+    player1: player_left
+    player2: player_right
+
     canvas:
         Rectangle:
             ## Бордюр посередине
@@ -26,3 +41,20 @@
         center_x: root.width * 3 / 4
         top: root.top - 50
         text: "0"
+
+    ## а тут создаем экземпляр нашего шарика в игровом поле
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+
+    ## создаем игрока 1
+    PongPaddle:
+        id: player_left
+        x: root.x
+        center_y: root.center_y
+
+    ## создаем игрока 2
+    PongPaddle:
+        id: player_right
+        x: root.width - self.width
+        center_y: root.center_y
